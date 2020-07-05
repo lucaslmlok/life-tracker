@@ -50,8 +50,8 @@ const SignupPage = () => {
 
   const formik = useFormik({
     initialValues: {
-      email: "",
-      password: "",
+      email: "test@gmail.com",
+      password: "tesing",
       name: "",
     },
     validationSchema: SignupSchema,
@@ -124,7 +124,7 @@ const SignupPage = () => {
                 </FormFeedback>
               </Col>
             </FormGroup>
-            <Button className="float-right" type="submit">
+            <Button className="float-right" type="submit" color="primary">
               Submit
             </Button>
           </Form>
