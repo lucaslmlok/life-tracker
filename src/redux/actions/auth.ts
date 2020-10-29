@@ -36,9 +36,9 @@ export const login = (email: string, password: string) => {
       const url = process.env.REACT_APP_API + LOGIN_API;
       const res = await axios.post(url, { email, password });
 
-      const { token } = res.data;
+      const { token, username } = res.data;
       localStorage.setItem("token", token);
-      return !!dispatch({ type: LOGIN, payload: { token } });
+      return !!dispatch({ type: LOGIN, payload: { token, username } });
     } catch (err) {
       return httpErrorHandler(err);
     }

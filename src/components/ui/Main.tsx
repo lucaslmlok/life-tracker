@@ -10,14 +10,14 @@ const Main = () => {
       <TopNavbar />
       <Container fluid={true}>
         <Row>
-          <Col xs="3">
+          {/* <Col xs="3">
             <SideMenu />
           </Col>
           <Col xs="9">
             <Switch>
               <Route path="/"></Route>
             </Switch>
-          </Col>
+          </Col> */}
         </Row>
       </Container>
     </>
