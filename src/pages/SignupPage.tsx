@@ -11,7 +11,10 @@ import {
   Card,
   CardHeader,
   CardBody,
+  Spinner,
+  Row,
 } from "reactstrap";
+import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -38,12 +41,15 @@ const SignupSchema = Yup.object().shape({
 const SignupPage = () => {
   const dispatch = useDispatch();
   const [isLoading, setisLoading] = useState(false);
+  const history = useHistory();
 
   const onSubmit = async ({ email, password, name }) => {
-    try {
-      setisLoading(true);
-      await dispatch(authActions.signup(email, password, name));
-    } finally {
+    setisLoading(true);
+    const result = await dispatch(authActions.signup(email, password, name));
+
+    if (result) {
+      history.push("/home");
+    } else {
       setisLoading(false);
     }
   };
@@ -64,8 +70,9 @@ const SignupPage = () => {
         <CardHeader>Signup</CardHeader>
         <CardBody>
           <Form onSubmit={formik.handleSubmit}>
+            <small className="d-block text-right required mb-3">Required</small>
             <FormGroup row>
-              <Label for="email" sm={3}>
+              <Label for="email" sm={3} className="required">
                 Email
               </Label>
               <Col sm={9}>
@@ -85,7 +92,7 @@ const SignupPage = () => {
               </Col>
             </FormGroup>
             <FormGroup row>
-              <Label for="password" sm={3}>
+              <Label for="password" sm={3} className="required">
                 Password
               </Label>
               <Col sm={9}>
@@ -124,9 +131,33 @@ const SignupPage = () => {
                 </FormFeedback>
               </Col>
             </FormGroup>
-            <Button className="float-right" type="submit" color="primary">
-              Submit
-            </Button>
+            <Row>
+              <Col
+                xs={{ order: 2, size: 12 }}
+                sm={{ order: 1, size: true }}
+                className="mt-2"
+              >
+                <Link to="/login">Already have an account?</Link>
+              </Col>
+              <Col xs={{ order: 1, size: 12 }} sm={{ order: 2, size: "auto" }}>
+                <Button
+                  className="float-right"
+                  type="submit"
+                  color="primary"
+                  disabled={isLoading}
+                >
+                  Submit
+                  {isLoading && (
+                    <Spinner
+                      className="ml-2"
+                      style={{ marginBottom: "0.1rem" }}
+                      size="sm"
+                      color="light"
+                    />
+                  )}
+                </Button>
+              </Col>
+            </Row>
           </Form>
         </CardBody>
       </Card>

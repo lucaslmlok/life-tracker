@@ -1,4 +1,10 @@
 .auth-card {
   width: 80%;
-  max-width: 400px;
+  max-width: 450px;
+}
+
+.required:after {
+  content: "*";
+  color: red;
+  margin-left: 0.2rem;
 }

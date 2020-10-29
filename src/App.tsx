@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import HomePage from "./pages/HomePage";
 import SignupPage from "./pages/SignupPage";
 import LoginPage from "./pages/LoginPage";
+import Main from "./components/ui/Main";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ const App = () => {
           <LoginPage />
         </Route>
         <Route path="/">
-          <HomePage />
+          <Main />
         </Route>
       </Switch>
     </Router>

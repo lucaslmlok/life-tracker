@@ -1,11 +1,21 @@
 import React from "react";
-import { Container } from "reactstrap";
+import { Container, Col, Row } from "reactstrap";
+import TopNavbar from "../components/ui/TopNavbar";
+import SideMenu from "../components/ui/SideMenu";
 
 const HomePage = () => {
   return (
-    <Container>
-      <h1>Home Page</h1>
-    </Container>
+    <>
+      <TopNavbar />
+      <Container fluid={true}>
+        <Row>
+          <Col xs="3">
+            <SideMenu />
+          </Col>
+          <Col xs="9"></Col>
+        </Row>
+      </Container>
+    </>
   );
 };
 
